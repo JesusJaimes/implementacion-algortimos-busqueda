@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -5,7 +7,7 @@ import java.time.Instant;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-public class textSearchAlgorithms {
+public class TextSearchAlgorithms {
 
     //Implementacion de Fuerza Bruta
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +32,7 @@ public class textSearchAlgorithms {
         }
         long finish = Instant.now().toEpochMilli();
         long time = finish - start;
-        return "BÚSQUEDA CON ALGORITMO FUERZA BRUTA"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time;
+        return "BÚSQUEDA CON ALGORITMO FUERZA BRUTA"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time+" MILISEGUNDOS";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,7 +88,7 @@ public class textSearchAlgorithms {
         }
         long finish = Instant.now().toEpochMilli();
         long time = finish - start;
-        return "BÚSQUEDA CON ALGORITMO KNUTH MORRIS PRATT"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time;
+        return "BÚSQUEDA CON ALGORITMO KNUTH MORRIS PRATT"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time+" MILISEGUNDOS";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -132,7 +134,7 @@ public class textSearchAlgorithms {
         }
         long finish = Instant.now().toEpochMilli();
         long time = finish - start;
-        return "BÚSQUEDA CON ALGORITMO BOYER MOORE HORSPOOL"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time;
+        return "BÚSQUEDA CON ALGORITMO BOYER MOORE HORSPOOL"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time+" MILISEGUNDOS";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,40 +180,8 @@ public class textSearchAlgorithms {
         }
         long finish = Instant.now().toEpochMilli();
         long time = finish - start;
-        return "BÚSQUEDA CON ALGORITMO BOYER MOORE SUNDAY"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time;
+        return "BÚSQUEDA CON ALGORITMO BOYER MOORE SUNDAY"+"\n"+"COINCIDENCIAS: "+matches+"\n"+"TIEMPO DE BÚSQUEDA: "+time+" MILISEGUNDOS";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public static void main(String[] args) {
-        JFileChooser fileChooser = new JFileChooser();
-        StringBuilder data = new StringBuilder();
-        if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-            try {
-                File file = fileChooser.getSelectedFile();
-                Scanner reader = new Scanner(file);
-                while (reader.hasNextLine()) {
-                    data.append(reader.nextLine());
-                    data.append("\n");
-                }
-                reader.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "NO SE SELCCIONO NINGUN ARCHIVO");
-        }
-        textSearchAlgorithms search = new textSearchAlgorithms();
-        String text = data.toString();
-        String pattern = "And Zacchaeus stood, and said unto the Lord: Behold, Lord, the" +
-                "\n"+ "half of my goods I give to the poor";
-        String result1 = search.BRF(pattern, text);
-        String result2 = search.KMP(pattern, text);
-        String result3 = search.BMH(pattern, text);
-        String result4 = search.BMS(pattern, text);
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(result4);
-    }
 
 }
