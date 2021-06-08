@@ -32,6 +32,8 @@ public class TextSearchController {
     RadioButton rbtnBMH;
     @FXML
     RadioButton rbtnBMS;
+    @FXML
+    RadioButton rbtnAll;
 
     public void loadFile(){
         FileChooser fileChooser = new FileChooser();
@@ -71,6 +73,16 @@ public class TextSearchController {
                 txtResults.setText(search.BMH(pattern, text));
             }else if(rbtnBMS.isSelected()){
                 txtResults.setText(search.BMS(pattern, text));
+            }else if(rbtnAll.isSelected()){
+                String results = "";
+                results+=search.BRF(pattern, text);
+                results+="\n__________________________________________________________________________\n\n";
+                results+=search.KMP(pattern, text);
+                results+="\n__________________________________________________________________________\n\n";
+                results+=search.BMH(pattern, text);
+                results+="\n__________________________________________________________________________\n\n";
+                results+=search.BMS(pattern, text);
+                txtResults.setText(results);
             }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText( "SELECCIONE UNO DE LOS ALGORITMOS");
@@ -96,5 +108,6 @@ public class TextSearchController {
         rbtnKMP.setSelected(false);
         rbtnBMH.setSelected(false);
         rbtnBMS.setSelected(false);
+        rbtnAll.setSelected(false);
     }
 }
